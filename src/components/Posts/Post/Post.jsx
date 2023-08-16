@@ -60,14 +60,14 @@ const Post = ({ post, setCurrentId }) => {
         {post.title}
       </Typography>
       <CardContent>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="body2" color="textSecondary" component="p">
           {post.message}
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button size="small" color="primary" onClick={handleLikePost}>
           <ThumbUpAltIcon fontSize="small"></ThumbUpAltIcon>
-          Like{post.likeCount}
+          Like {post.likeCount}
         </Button>
         <Button size="small" color="primary" onClick={handleDeletePost}>
           <DeleteIcon fontSize="small"></DeleteIcon>
