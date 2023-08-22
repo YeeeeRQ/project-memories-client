@@ -41,7 +41,7 @@ const Auth = () => {
     if (isSignup) {
       dispatch(signup(formData, navigate));
     } else {
-      dispatch(signin(formData), navigate);
+      dispatch(signin(formData, navigate));
     }
   };
   const handleChange = (e) => {
@@ -52,7 +52,7 @@ const Auth = () => {
   };
   const switchMode = () => {
     setIsSignup((prev) => !prev);
-    handleShowPassword(false);
+    setShowPassword(false);
   };
 
   const googleLogin = useGoogleLogin({
