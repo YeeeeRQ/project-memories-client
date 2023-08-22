@@ -14,19 +14,42 @@ import Input from "./Input";
 import useStyles from "./styles";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { signin, signup } from "../../actions/auth";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const Auth = () => {
   const classes = useStyles();
   const [isSignup, setIsSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleShowPassword = () => setShowPassword((prev) => !prev);
 
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    if (isSignup) {
+      dispatch(signup(formData, navigate));
+    } else {
+      dispatch(signin(formData), navigate);
+    }
+  };
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
   const switchMode = () => {
     setIsSignup((prev) => !prev);
     handleShowPassword(false);
